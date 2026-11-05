@@ -1,0 +1,79 @@
+
+{% extends 'companion_app/base.html' %}
+
+{% block title %}Dashboard | EduMind{% endblock %}
+
+{% block content %}
+
+<div style="max-width:1100px; margin:40px auto; padding:20px;">
+
+    <h1 style="color:#4338ca;">
+        Welcome, {{ student.full_name }}!
+    </h1>
+
+    <p style="color:#666;">
+        Welcome to your personal EduMind learning dashboard.
+    </p>
+
+    <div style="background:#eef2ff; padding:25px;
+    border-radius:15px; margin-top:25px;">
+
+        <h2>Student Profile</h2>
+
+        <p><b>Full Name:</b> {{ student.full_name }}</p>
+        <p><b>Username:</b> {{ request.user.username }}</p>
+        <p><b>Email:</b> {{ student.email }}</p>
+        <p><b>Course:</b> {{ student.course }}</p>
+
+    </div>
+
+    <h2 style="margin-top:35px;">Your Learning Features</h2>
+
+    <div style="display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px; margin-top:20px;">
+
+        <a href="{% url 'topic_explainer' %}"
+        style="text-decoration:none; color:inherit;">
+
+            <div style="background:#eef2ff; padding:25px;
+            border-radius:15px; cursor:pointer;">
+
+                <h2>📚 Topic Explainer</h2>
+                <p>Understand difficult topics easily.</p>
+                <p style="color:#4338ca;">Click here to explore →</p>
+
+            </div>
+
+        </a>
+
+        <div style="background:#ecfdf5; padding:25px; border-radius:15px;">
+            <h2>🎯 Interview Prep</h2>
+            <p>Practice technical and HR questions.</p>
+        </div>
+
+        <div style="background:#fff7ed; padding:25px; border-radius:15px;">
+            <h2>📝 MCQ Quiz</h2>
+            <p>Test your knowledge with quizzes.</p>
+        </div>
+
+        <div style="background:#fdf2f8; padding:25px; border-radius:15px;">
+            <h2>🤖 AI Chat</h2>
+            <p>Get help with your learning questions.</p>
+        </div>
+
+    </div>
+
+    <form method="POST" action="/logout/" style="margin-top:30px;">
+        {% csrf_token %}
+        <button type="submit"
+        style="padding:13px 25px; background:#ef4444;
+        color:white; border:none; border-radius:8px;
+        cursor:pointer;">
+            Logout
+        </button>
+    </form>
+
+</div>
+
+{% endblock %}

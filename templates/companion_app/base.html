@@ -1,0 +1,56 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}EduMind - Student Learning Platform{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+
+            <a href="/" class="logo">EduMind</a>
+
+            <div class="nav-links">
+
+                {% if user.is_authenticated %}
+
+                    <a href="/">Home</a>
+                    <a href="/dashboard/">Dashboard</a>
+                    <a href="/logout/">Logout</a>
+
+                {% else %}
+
+                    <a href="/">Home</a>
+                    <a href="/register/">Register</a>
+                    <a href="/login/">Login</a>
+
+                {% endif %}
+
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Main Page Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align:center; padding:25px; margin-top:40px;">
+        <p>© 2026 EduMind. Learn Smarter, Grow Better.</p>
+    </footer>
+
+</body>
+</html>

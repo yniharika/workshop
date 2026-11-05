@@ -1,0 +1,59 @@
+
+{% extends 'companion_app/base.html' %}
+
+{% block title %}AI Topic Explainer | EduMind{% endblock %}
+
+{% block content %}
+
+<div style="max-width: 850px; margin: 40px auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+
+    <h1 style="color: #2563eb; text-align: center;">
+        📚 AI Topic Explainer
+    </h1>
+
+    <p style="text-align: center; color: #666; margin: 15px 0 30px;">
+        Enter any subject or topic and let EduMind explain it in simple language.
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="topic" style="font-weight: bold;">
+            Enter Your Topic
+        </label>
+
+        <input
+            type="text"
+            id="topic"
+            name="topic"
+            value="{{ topic }}"
+            placeholder="Example: Python, DBMS, Operating System..."
+            required
+            style="width: 100%; padding: 14px; margin: 12px 0 20px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px;"
+        >
+
+        <button
+            type="submit"
+            style="width: 100%; padding: 14px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;"
+        >
+            ✨ Explain Topic
+        </button>
+    </form>
+
+    {% if explanation %}
+        <div style="margin-top: 30px; padding: 20px; background: #eff6ff; border-radius: 10px;">
+            <h2 style="color: #1d4ed8;">Your AI Explanation</h2>
+
+            <div style="white-space: pre-wrap; line-height: 1.8; color: #333; margin-top: 15px;">{{ explanation }}</div>
+        </div>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 25px;">
+        <a href="{% url 'dashboard' %}" style="color: #2563eb; text-decoration: none;">
+            ← Back to Dashboard
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
